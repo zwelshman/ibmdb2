@@ -1,5 +1,3 @@
-CONNECT TO SAMPLE;
-
 CREATE TABLE IF NOT EXISTS employees (
   id INTEGER NOT NULL PRIMARY KEY,
   name VARCHAR(50),
@@ -13,4 +11,3 @@ INSERT INTO employees (id, name, position, salary) VALUES
 (3, 'Carol White', 'Analyst', 58000);
 
 COMMIT;
-CONNECT RESET;
