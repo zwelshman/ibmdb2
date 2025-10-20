@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db2:
+    build: .
+    container_name: db2mock
+    environment:
+      DB2INST1_PASSWORD: db2inst1-pwd
+      LICENSE: accept
+    ports:
+      - "50000:50000"
+    volumes:
+      - ./sql:/database-init
+    command: >
+      /bin/bash -c "
+      /opt/ibm/db2/V11.5/bin/db2start &&
+      db2 connect to SAMPLE || db2 create database SAMPLE &&
+      for f in /database-init/*.sql; do db2 -tvf $f; done &&
+      tail -f /dev/null
+      "
